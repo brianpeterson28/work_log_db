@@ -22,7 +22,7 @@ class Employee(Model):
         
 def initialize():
     db.connect()
-    db.create_tables([Time_Entry], safe=True)
+    db.create_tables([Employee, Time_Entry], safe=True)
 
 if __name__ == '__main__':
     initialize()

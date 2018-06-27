@@ -17,10 +17,4 @@ def add_name(employee_name):
         #Either person has same name as somone else or 
 
 if __name__ == '__main__':
-    db.connect()
-    db.create_tables([Employee], safe=True)
-    Employee.create(name="Brian Peterson")
-    ee1 = Employee.create(name="Brian Peterson")
-    Time_Entry.create(name=ee1.name,title="test title",
-        time_spent=50,
-        notes="These are the notes")
+

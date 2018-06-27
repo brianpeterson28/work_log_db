@@ -3,22 +3,22 @@ import datetime
 
 db = SqliteDatabase('time_entries.db')
 
+class Employee(Model):
+    employee_name = CharField(max_length=100, unique=True)
+
+    class Meta:
+        database = db
+
 
 class Time_Entry(Model):
-    #employee_name = ForeignKeyField(Employee, related_name='time_entries') #"TypeError: __init__() got an unexpected keyword argument backref"
-    date = DateTimeField(default=datetime.datetime.now)
+    employee_name = ForeignKeyField(Employee, backref='time_entries') 
     title = TextField()
     time_spent = IntegerField()
     notes = TextField()
 
-    class meta:
-        database = db
-
-class Employee(Model):
-    name = CharField(max_length=100, unique=True)
-
     class Meta:
         database = db
+
         
 def initialize():
     db.connect()
@@ -26,7 +26,15 @@ def initialize():
 
 if __name__ == '__main__':
     initialize()
-    Time_Entry.create(title="test title", time_spent=50,
-        notes="These are the notes")
-    Employee.create(name="Brian Peterson")
+    ee1 = Employee.create(employee_name="Brian Peterson")
+    Time_Entry.create(employee_name=ee1, title="test title", 
+        time_spent=50, notes="These are the notes")
+    ee2 = Employee.create(employee_name="Alan Peterson")
+    Time_Entry.create(employee_name=ee2, title="test title 2", 
+        time_spent=30, notes="More notes")
+    entry = Time_Entry.select().join(Employee).where(Employee.employee_name=="Brian Peterson")
+    for entry in query:
+        print(entry.title)
+        print(entry.employee_name.employee_name)
+
 

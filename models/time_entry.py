@@ -12,7 +12,7 @@ class Time_Entry(Model):
     time_spent = IntegerField()
     notes = TextField()
 
-    class meta:
+    class Meta:
         database = db
 
 if __name__ == '__main__':

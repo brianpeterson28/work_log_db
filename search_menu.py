@@ -7,11 +7,11 @@ class Search_Menu(Screen):
         """Initializes Search_Menu class."""
 
         self.title = "Work Log Program - Search Menu"
-        self.options = ["a) Exact Date",
-                        "b) Range of Dates",
-                        "c) Time Spent",
-                        "d) Exact Search",
-                        "e) Regex Pattern",
+        self.options = ["a) Employee Name",
+                        "b) Exact Date",
+                        "c) Date Range",
+                        "d) Time Spent",
+                        "e) Search Term",
                         "f) Return to Main Menu"]
 
     def show(self):

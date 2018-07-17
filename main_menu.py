@@ -24,3 +24,6 @@ class Main_Menu(Screen):
             print("{}) {}".format(count, item))
             count += 1
         count = 1
+
+if __name__ == '__main__':
+    self.show()

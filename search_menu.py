@@ -7,12 +7,13 @@ class Search_Menu(Screen):
         """Initializes Search_Menu class."""
 
         self.title = "Work Log Program - Search Menu"
-        self.options = ["a) Employee Name",
-                        "b) Exact Date",
-                        "c) Date Range",
-                        "d) Time Spent",
-                        "e) Search Term",
-                        "f) Return to Main Menu"]
+        self.options = ["a) Browse by Employee Name",
+                        "b) Search by Employee Name",
+                        "c) Exact Date",
+                        "d) Date Range",
+                        "e) Time Spent",
+                        "f) Keyword Search",
+                        "g) Return to Main Menu"]
 
     def show(self):
         """Displays the content of the Search_Menu class."""
@@ -23,3 +24,6 @@ class Search_Menu(Screen):
         for item in self.options:
             print("{}".format(item))
         print("")
+
+if __name__ == '__main__':
+    self.show()

@@ -8,9 +8,7 @@ class Main_Menu(Screen):
         """
 
         self.title = "Work Log Program - Main Menu"
-        self.options = ["Add New Entry",
-                        "Search Existing",
-                        "Quit Program"]
+        self.options = ["Add New Entry", "Search Existing", "Quit Program"]
 
     def show(self):
         """Displays content of Main_Menu class.

@@ -1,4 +1,4 @@
-from screen import Screen
+from menus.screen import Screen
 
 
 class Add_Menu(Screen):

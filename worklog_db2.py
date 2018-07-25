@@ -4,12 +4,12 @@ import csv
 import re
 
 from peewee import *
-from add_menu import Add_Menu
-from main_menu import Main_Menu
-from search_menu import Search_Menu
+from menus.add_menu import Add_Menu
+from menus.main_menu import Main_Menu
+from menus.search_menu import Search_Menu
 from models.time_entry import Time_Entry
 from models.employee import Employee
-from time_entriesdb import *
+from models.time_entriesdb import *
 
 
 def main():

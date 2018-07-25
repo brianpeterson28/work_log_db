@@ -3,7 +3,7 @@ from unittest import mock
 from unittest.mock import patch
 import datetime
 
-from worklog_db2 import *
+from worklog_db import *
 from menus.screen import Screen
 from menus.add_menu import Add_Menu
 from menus.main_menu import Main_Menu

@@ -66,11 +66,11 @@ class MenuTests(unittest.TestCase):
 
 class HelperFunctionTests(unittest.TestCase):
 
-    def test_get_employee_name(self):
+    def test_get_employee(self):
         with patch('builtins.input', side_effect=["Brian Peterson"]):
             expected_name = "Brian Peterson"
-            result = get_employee_name()
-            self.assertEqual(expected_name, result)
+            result = get_employee()
+            self.assertEqual(expected_name, result.name)
 
 
     def test_get_date(self):

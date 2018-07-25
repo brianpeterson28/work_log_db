@@ -72,7 +72,7 @@ def run_add_entry_process():
 
     add = Add_Menu()
     add.show()
-    employee_name = get_employee_name()
+    employee = get_employee()
     clear_screen()
     add.show()
     date = get_date()
@@ -85,7 +85,7 @@ def run_add_entry_process():
     clear_screen()
     add.show()
     notes = get_notes()
-    Time_Entry.create(employee_name=employee_name,
+    Time_Entry.create(employee_name=employee,
                       date=date,
                       title=title,
                       time_spent=time_spent,
@@ -95,7 +95,7 @@ def run_add_entry_process():
     clear_screen()
 
 
-def get_employee_name():
+def get_employee():
     """Gets employee name for purpose of creating time entry.
 
     Asks user for employee name, determines whether name already exists, 
@@ -109,7 +109,7 @@ def get_employee_name():
     except IntegrityError:
         employee = Employee.get(Employee.name == employee_name)
 
-    return employee_name
+    return employee
 
 
 def get_date():

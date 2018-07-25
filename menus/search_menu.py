@@ -26,5 +26,6 @@ class Search_Menu(Screen):
         print("")
         return 0
 
+
 if __name__ == '__main__':
     self.show()

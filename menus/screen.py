@@ -10,5 +10,6 @@ class Screen():
 
         print(self.title)
 
+
 if __name__ == "__main__":
     pass

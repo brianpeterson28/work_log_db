@@ -33,7 +33,7 @@ def main():
             elif search_type.lower() == "b":
                 run_search_by_name_process()
             elif search_type.lower() == "c":
-                run_exact_date_search_process() 
+                run_exact_date_search_process()
             elif search_type.lower() == "d":
                 run_range_of_dates_search_process()
             elif search_type.lower() == "e":
@@ -98,11 +98,11 @@ def run_add_entry_process():
 def get_employee():
     """Gets employee name for purpose of creating time entry.
 
-    Asks user for employee name, determines whether name already exists, 
+    Asks user for employee name, determines whether name already exists,
     returns employee name as a string.
     """
 
-    employee_name = input("Employee Name \n" + 
+    employee_name = input("Employee Name \n" +
                           "Please enter employee's name: ").strip()
     try:
         employee = Employee.create(name=employee_name)
@@ -116,10 +116,10 @@ def get_date():
     """Gets date for purpose of creating time entry.
 
     Asks user for date of entry, determines whether the date is properly
-    formatted, and returns date as a datetime object. 
+    formatted, and returns date as a datetime object.
     """
 
-    date = input("Enter Date of the Task \n" + 
+    date = input("Enter Date of the Task \n" +
                  "Please use DD/MM/YYYY format: ").strip()
     date = validate_date(date)
     date = datetime.datetime.strptime(date, '%d/%m/%Y')
@@ -149,7 +149,7 @@ def validate_date(date):
 def get_title():
     """Gets title for purpose of creating time entry.
 
-    Asks user for title and returns it as a string. 
+    Asks user for title and returns it as a string.
     """
 
     title = input("Title of Task: ").strip()
@@ -218,7 +218,7 @@ def run_browse_by_name_process():
             print("\t" + employee.name)
 
         print("")
-        selection = input("Which employee's time " + 
+        selection = input("Which employee's time " +
                           "entries would you like to view? > ").strip()
 
         selection = validate_employee_name(selection, list_of_employees)
@@ -234,7 +234,7 @@ def run_browse_by_name_process():
 def run_search_by_name_process():
     """Executes name search on existing entries.
 
-    Asks user for a name to search. Informs user if there is none, one, or 
+    Asks user for a name to search. Informs user if there is none, one, or
     many matches. Prompts user to continue process.
     """
 
@@ -244,7 +244,7 @@ def run_search_by_name_process():
 
     if len(matching_names) == 0:
         print("Sorry there are no employees whose name contains {}"
-               .format(name))
+              .format(name))
         dummy = input("Please press Enter to return to the Main Menu.")
         clear_screen()
 
@@ -260,13 +260,13 @@ def run_search_by_name_process():
         run_options_loop(matching_entries)
 
     elif len(matching_names) > 1:
-        print("There is more than one employee " + 
+        print("There is more than one employee " +
               "whose name contains {}.".format(name))
         print("")
         for employee in matching_names:
             print("\t {}".format(employee.name))
         print("")
-        selection = input("Which employee's time " + 
+        selection = input("Which employee's time " +
                           "entries would you like to view? > ").strip()
         selection = validate_employee_name(selection, matching_names)
         matching_entries = (Time_Entry.select()
@@ -275,13 +275,13 @@ def run_search_by_name_process():
         run_options_loop(matching_entries)
 
     else:
-        pass 
+        pass
 
 
 def validate_employee_name(employee_name, matching_names):
     """Confirms that employee name has entries associated with it.
 
-    Takes employee name as input and either returns the employee name or 
+    Takes employee name as input and either returns the employee name or
     informs user that the requested employee is not recognized.
     """
     matching_names = matching_names
@@ -296,8 +296,8 @@ def validate_employee_name(employee_name, matching_names):
             for employee in matching_names:
                 print("\t {}".format(employee.name))
                 print("")
-            employee_name = input("Please re-enter the name of the person " + 
-                               "whose entries you would like to view. > ")
+            employee_name = input("Please re-enter the name of the person " +
+                                  "whose entries you would like to view. > ")
             employee_name.strip()
     return employee_name
 
@@ -342,8 +342,8 @@ def run_range_of_dates_search_process():
 
     start_date, end_date = get_date_range()
 
-    within_range = ((Time_Entry.date >= start_date) 
-                     & (Time_Entry.date <= end_date))
+    within_range = ((Time_Entry.date >= start_date)
+                    & (Time_Entry.date <= end_date))
 
     matching_entries = (Time_Entry.select().where(within_range))
 
@@ -359,7 +359,7 @@ def run_range_of_dates_search_process():
 def get_date_range():
     """Gets date range from user.
 
-    Asks user for start and end of date range. Returns both dates formatted as 
+    Asks user for start and end of date range. Returns both dates formatted as
     datetime objects.
     """
 
@@ -410,7 +410,7 @@ def run_keyword_search_process():
     search_term = input("Enter a search term: ").strip()
 
     contains_search_term = ((Time_Entry.title.contains(search_term))
-                             | (Time_Entry.notes.contains(search_term)))
+                            | (Time_Entry.notes.contains(search_term)))
 
     matching_entries = Time_Entry.select().where(contains_search_term)
 
@@ -537,7 +537,7 @@ def remaining_entries(employee_name):
     number_of_entries = (Time_Entry.select()
                                    .join(Employee)
                                    .where(Employee.name == employee_name)
-                                   .count()) 
+                                   .count())
     return number_of_entries
 
 
@@ -577,7 +577,7 @@ def display_sr(matching_entries, count, total_results):
         if count == (len_of_list - 1):
             print("[P]revious, [E]dit, [D]elete, [R]eturn to search menu")
         else:
-            print("[P]revious, [N]ext, [E]dit, [D]elete," + 
+            print("[P]revious, [N]ext, [E]dit, [D]elete," +
                   " [R]eturn to search menu")
 
 

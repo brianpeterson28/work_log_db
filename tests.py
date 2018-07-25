@@ -13,7 +13,8 @@ from time_entriesdb import *
 
 class MenuTests(unittest.TestCase):
 
-    def test_main_menu(self):
+
+            def test_main_menu(self):
 
         main_menu = Main_Menu()
         correct_title = "Work Log Program - Main Menu"
@@ -38,7 +39,6 @@ class MenuTests(unittest.TestCase):
         add_menu = Add_Menu()
         correct_title = "Work Log Program - Add Time Entry"
         self.assertEqual(add_menu.title, correct_title)
-        
 
 class HelperFunctionTests(unittest.TestCase):
 

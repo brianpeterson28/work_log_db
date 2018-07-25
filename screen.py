@@ -9,3 +9,6 @@ class Screen():
         """Displays content of Screen class."""
 
         print(self.title)
+
+if __name__ == "__main__":
+    pass

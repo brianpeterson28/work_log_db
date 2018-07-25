@@ -24,6 +24,7 @@ class Search_Menu(Screen):
         for item in self.options:
             print("{}".format(item))
         print("")
+        return 0
 
 if __name__ == '__main__':
     self.show()

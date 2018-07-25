@@ -3,6 +3,7 @@ from unittest import mock
 from unittest.mock import patch
 import datetime
 
+from peewee import *
 from worklog_db import *
 from menus.screen import Screen
 from menus.add_menu import Add_Menu
@@ -12,6 +13,7 @@ from models.time_entry import Time_Entry
 from models.employee import Employee
 from models.time_entriesdb import *
 
+initialize()
 
 class MenuTests(unittest.TestCase):
 
@@ -72,7 +74,7 @@ class HelperFunctionTests(unittest.TestCase):
             expected_name = "Test Employee"
             result = get_employee()
             self.assertEqual(expected_name, result.name)
-            result.delete_instance()
+            
 
 
     def test_get_date(self):
@@ -120,10 +122,13 @@ class HelperFunctionTests(unittest.TestCase):
 
 
     def test_validate_employee_name(self):
-        with patch('builtins.input', side_effect=["Brian Peterson"]):
-            expected_name = "Brian Peterson"
-            result = validate_employee_name("Not In Database")
+        with patch('builtins.input', side_effect=["Test Employee"]):
+            expected_name = "Test Employee"
+            fake_list = []
+            result = validate_employee_name("Not In Database", fake_list)
             self.assertEqual(expected_name, result)
+            test = Employee.get(Employee.name == result)
+            test.delete_instance()
 
 
     def test_remaining_entries(self):

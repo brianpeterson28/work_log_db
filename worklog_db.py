@@ -221,7 +221,7 @@ def run_browse_by_name_process():
         selection = input("Which employee's time " + 
                           "entries would you like to view? > ").strip()
 
-        selection = validate_employee_name(selection)
+        selection = validate_employee_name(selection, list_of_employees)
 
         matching_entries = (Time_Entry.select()
                                       .join(Employee)
@@ -268,7 +268,7 @@ def run_search_by_name_process():
         print("")
         selection = input("Which employee's time " + 
                           "entries would you like to view? > ").strip()
-        selection = validate_employee_name(selection)
+        selection = validate_employee_name(selection, matching_names)
         matching_entries = (Time_Entry.select()
                                       .join(Employee)
                                       .where(Employee.name == selection))
@@ -278,13 +278,13 @@ def run_search_by_name_process():
         pass 
 
 
-def validate_employee_name(employee_name):
+def validate_employee_name(employee_name, matching_names):
     """Confirms that employee name has entries associated with it.
 
     Takes employee name as input and either returns the employee name or 
     informs user that the requested employee is not recognized.
     """
-
+    matching_names = matching_names
     employee_name.strip()
     while True:
         try:
@@ -293,6 +293,9 @@ def validate_employee_name(employee_name):
         except DoesNotExist:
             clear_screen()
             print("The name you entered is not recognized.")
+            for employee in matching_names:
+                print("\t {}".format(employee.name))
+                print("")
             employee_name = input("Please re-enter the name of the person " + 
                                "whose entries you would like to view. > ")
             employee_name.strip()

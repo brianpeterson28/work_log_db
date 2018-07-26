@@ -251,7 +251,7 @@ def run_search_by_name_process():
     elif len(matching_names) == 1:
         matching_entries = (Time_Entry.select()
                                       .join(Employee)
-                                      .where(Employee.name == name))
+                                      .where(Employee.name.contains(name)))
         print("Your search returned one match.")
         print("")
         dummy = input("Press Enter to view {}'s entries."
@@ -272,6 +272,7 @@ def run_search_by_name_process():
         matching_entries = (Time_Entry.select()
                                       .join(Employee)
                                       .where(Employee.name == selection))
+        clear_screen()
         run_options_loop(matching_entries)
 
     else:
@@ -295,7 +296,6 @@ def validate_employee_name(employee_name, matching_names):
             print("The name you entered is not recognized.")
             for employee in matching_names:
                 print("\t {}".format(employee.name))
-                print("")
             employee_name = input("Please re-enter the name of the person " +
                                   "whose entries you would like to view. > ")
             employee_name.strip()

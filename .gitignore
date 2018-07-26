@@ -1,5 +1,4 @@
 *.txt
-*.db
 *.pyc
 *.coverage
 *.pyc

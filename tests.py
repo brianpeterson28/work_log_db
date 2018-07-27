@@ -104,10 +104,13 @@ class HelperFunctionTests(unittest.TestCase):
             self.assertEqual(expected_time_spent, result)
 
     def test_get_notes(self):
-        with patch('builtins.input', side_effect=["Test Notes."]):
-            expected_notes = "Test Notes."
-            result = get_notes()
-            self.assertEqual(expected_notes, result)
+        with patch('builtins.input', side_effect=["Test Notes", "", "Notes"]):
+            expected_notes1 = "Test Notes"
+            expected_notes2 = "Notes"
+            result1 = get_notes()
+            result2 = get_notes()
+            self.assertEqual(expected_notes1, result1)
+            self.assertEqual(expected_notes2, result2)
 
     def test_validate_employee_name(self):
         with patch('builtins.input', side_effect=["Test Employee"]):

@@ -193,7 +193,11 @@ def get_notes():
     Asks user for notes and returns the input as a string.
     """
 
-    notes = input("Notes (Optional, you can leave this empty): ").strip()
+    notes = input("Notes: ").strip()
+    while len(notes) < 1:
+        clear_screen()
+        notes = input("Please enter notes. They are required: ").strip()
+        clear_screen()
     return notes
 
 
@@ -489,7 +493,7 @@ def run_options_loop(matching_entries):
                     clear_screen()
                     break
                 elif edit_selection == "notes":
-                    new_notes = input("Enter new notes. > ").strip()
+                    new_notes = get_notes()
                     matching_entries[count].notes = new_notes
                     matching_entries[count].save()
                     clear_screen()
@@ -582,7 +586,10 @@ def display_sr(matching_entries, count, total_results):
 
 
 def prettyprint_date(date_string):
-    dt = datetime.datetime.strptime(date_string, '%Y-%m-%d')
+    try:
+        dt = datetime.datetime.strptime(date_string, '%Y-%m-%d') #If user enters
+    except ValueError:
+        dt = datetime.datetime.strptime(date_string, '%d/%m/%Y')
     print("{:%d/%m/%Y}".format(dt))
 
 

@@ -587,7 +587,7 @@ def display_sr(matching_entries, count, total_results):
 
 def prettyprint_date(date_string):
     try:
-        dt = datetime.datetime.strptime(date_string, '%Y-%m-%d') #If user enters
+        dt = datetime.datetime.strptime(date_string, '%Y-%m-%d') 
     except ValueError:
         dt = datetime.datetime.strptime(date_string, '%d/%m/%Y')
     print("{:%d/%m/%Y}".format(dt))
